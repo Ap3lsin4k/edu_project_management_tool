@@ -1,4 +1,36 @@
+**Діаграми прецедентів**
+---
+@startuml
+
+    actor "Розробник" as TeamMember
+    actor "Тімлід" as TeamLeader
+    actor "Менеджер" as ProjectManager
+    
+    
+    usecase "<b>UC_1</b>\nПодивитися прогрес" as UC_1
+    usecase "<b>UC_2</b>\nСтворити завдання" as UC_2
+    usecase "<b>UC_3</b>\nСтворити під завдання" as UC_3
+    usecase "<b>UC_4</b>\nЗакінчити завдання" as UC_4
+    usecase "<b>UC_5</b>\nСтворити команнду" as UC_5
+    usecase "<b>UC_6</b>\nСтворити проект" as UC_6
+   
+
+    TeamMember -u-> UC_3
+    
+    TeamLeader --> UC_1
+    TeamLeader --> UC_2
+    TeamLeader --> UC_4
+    
+    ProjectManager -d-> UC_5
+    ProjectManager -d-> UC_6
+    
+    ProjectManager -u-|> TeamLeader
+    TeamLeader -u-|> TeamMember
+
+@enduml 
+
 **Сценарії використання**
+---
 
 ID:01
 
@@ -37,9 +69,8 @@ ID:01
         stop;
 
 @enduml
-
+   
 ID:02
-
 
 @startuml
 
@@ -81,12 +112,50 @@ ID:02
     |Користувач|
         stop;
 
-    
-
 @enduml
 
-ID:04
+ID:03
 
+@startuml
+
+    left header
+        <font color=000 size=16><b>ID:</b> ID:03
+        <font color=000 size=16><b>Назва:</b> Cтворити підзадачу
+        <font color=000 size=16><b>Учасники:</b> Розробник, Система
+        <font color=000 size=16><b>Передумови:</b> Завдання
+        <font color=000 size=16><b>Результат:</b> Нова підзадача
+        <font color=000 size=16><b>Виключні ситуації:</b>
+        <font color=000 size=16> EX_3.1 Розробник призначає підзавдання іншому розробнику
+        
+        <font color=000 size=16><b>Основний сценарій:</b>
+        
+    end header
+
+    |Користувач|
+        start
+        : Розробник натискає
+        кнопку "Створити підзадачу";
+    |Система|
+        : Система надає 
+        форму створення ;
+        note right #ffaaaa
+        <b> Можливо
+        <b> EX_3.1
+        end note
+    |Користувач|
+        : Користувач заповнює форму;
+        : Користувач підтверджує
+        створення підзавдання;
+    |Система|
+        : Система створює підзадачу;
+    |Користувач|
+        stop;
+        
+        
+@enduml
+
+
+ID:04
 
 @startuml
 
@@ -154,9 +223,9 @@ ID:05
     |Користувач|
         stop;
 
+@enduml 
     
 ID:06
-
 
 @startuml
 
@@ -194,8 +263,6 @@ ID:06
     
     |Користувач|
         stop;
-
-    
 
 @enduml 
 
